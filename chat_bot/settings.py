@@ -77,18 +77,28 @@ WSGI_APPLICATION = 'chat_bot.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'chatbot',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'PORT':3306,
+        
+
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'chatbot',
-        'USER': 'root',
-        'PASSWORD': '',
-        'PORT':3306,
-        
-
+        'NAME': os.environ.get("railway"),
+        'USER': os.environ.get("root"),
+        'PASSWORD': os.environ.get("mogceOmKCYKNCYluioeeQSOfskFwzQQy"),
+        'HOST': os.environ.get("metro.proxy.rlwy.net"),
+        'PORT': os.environ.get("52614"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
