@@ -4,6 +4,14 @@ django-cors-headers==3.14.0
 gunicorn==23.0.0
 mysqlclient==2.2.4
 whitenoise==6.6.0
+
+# If you want to use PyMySQL instead of mysqlclient
 pymysql==1.1.0
+
+# Google Gemini API
 google-generativeai==0.7.2
 
+# Required dependencies for google-generativeai
+grpcio==1.62.2
+grpcio-status==1.62.2
+protobuf==5.27.0
