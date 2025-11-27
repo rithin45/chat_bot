@@ -1,0 +1,68 @@
+{%include 'user_header.html'%}
+<br>
+    <style>
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .chat-message {
+            display: flex;
+            margin: 10px 0;
+        }
+        .chat-message.sent {
+            justify-content: flex-end;
+        }
+        .chat-message.received {
+            justify-content: flex-start;
+        }
+        .chat-bubble {
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 60%;
+        }
+        .chat-bubble.sent {
+            background-color: #c7e1ff;
+        }
+        .chat-bubble.received {
+            background-color: #e1ffc7;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        {% for chat in chats %}
+        <div class="chat-message sent">
+            <div class="chat-bubble sent">
+                {{ chat.chat }}
+            </div>
+        </div>
+        {% if chat.reply %}
+        <div class="chat-message received">
+            <div class="chat-bubble received">
+                {{ chat.reply }}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <form action="" method="post">
+        <form action="" method="post" style="width: 60%; margin: 20px auto; font-family: Arial, sans-serif; border: 1px solid #ccc; padding: 20px; border-radius: 10px; background-color: #f9f9f9;">
+            <table style="width: 50%; border-collapse: collapse; font-family: Arial, sans-serif;">
+                <tr style="text-align: left;">
+                    <th>Chat</th>
+                    <td style="padding: 10px; border: 1px solid #ccc;"><input type="text" name="chat_message" required style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ccc;"></td>
+                </tr>
+                <tr style="text-align: left;">
+                    <td colspan="2" style="padding: 10px; text-align: center;">
+                        <input type="submit" name="submit" value="Send" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        
+    </form>
+</body>
+<br><br>
+{%include 'footer.html'%}

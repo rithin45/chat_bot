@@ -1,0 +1,28 @@
+{%include 'admin_header.html'%}
+<br><br>
+<body>
+    <form action="" method="post" style="width: 80%; margin: 20px auto; font-family: Arial, sans-serif; border: 1px solid #ccc; padding: 20px; border-radius: 10px; background-color: #f9f9f9;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+            <tr style="background-color: #007BFF; color: white;">
+                <th style="padding: 8px; border: 1px solid #ddd;">Sl No:</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Name:</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Phone:</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Email:</th>
+                <th style="padding: 8px; border: 1px solid #ddd;">Place:</th>
+            </tr>
+            {% for i in a %}
+            <tr style="background-color: #f2f2f2; border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ forloop.counter }}</td>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ i.fname }} {{ i.lname }}</td>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ i.phone }}</td>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ i.email }}</td>
+                <td style="padding: 8px; border: 1px solid #ddd;">{{ i.place }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    
+</body>
+<br>
+
+{% include 'footer.html' %}

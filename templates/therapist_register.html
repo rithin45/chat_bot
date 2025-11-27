@@ -1,0 +1,45 @@
+{% include 'public_header.html' %}
+<br><br>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px;">
+    <form action="" method="post" style="background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); max-width: 600px; margin: auto;">
+        <h2 style="text-align: center; color: #333; margin-bottom: 10px;">Therapist Registration</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="padding: 10px;"><label for="fname">First Name:</label></td>
+                <td style="padding: 10px;"><input type="text" id="fname" name="fname" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><label for="lname">Last Name:</label></td>
+                <td style="padding: 10px;"><input type="text" id="lname" name="lname" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><label for="place">Place:</label></td>
+                <td style="padding: 10px;"><input type="text" id="place" name="place" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><label for="email">Email:</label></td>
+                <td style="padding: 10px;"><input type="email" id="email" name="email" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><label for="phone">Phone:</label></td>
+                <td style="padding: 10px;"><input type="text" id="phone" name="phone" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><label for="username">Username:</label></td>
+                <td style="padding: 10px;"><input type="text" id="username" name="username" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;"><label for="password">Password:</label></td>
+                <td style="padding: 10px;"><input type="password" id="password" name="password" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;"></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding: 10px; text-align: center;">
+                    <input type="submit" name="submit" value="Reg Profile" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+<br><br>
+
+{% include 'footer.html' %}

@@ -1,0 +1,36 @@
+{%include 'user_header.html'%}
+<br>
+<body>
+    <form action="" method="post" style="width: 80%; margin: 20px auto; font-family: Arial, sans-serif; border: 1px solid #ccc; padding: 20px; border-radius: 10px; background-color: #f9f9f9;">
+        {% csrf_token %}
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+            <tr style="background-color: #007BFF; color: white; font-size: 16px;">
+                <th style="padding: 10px; border: 1px solid #ccc;">Sl No:</th>
+                <th style="padding: 10px; border: 1px solid #ccc;">Date:</th>
+                <th style="padding: 10px; border: 1px solid #ccc;">Time:</th>
+                <th style="padding: 10px; border: 1px solid #ccc;">Status:</th>
+                <th style="padding: 10px; border: 1px solid #ccc;">Therapist Name:</th>
+                <th style="padding: 10px; border: 1px solid #ccc;">Action:</th>
+            </tr>
+            {% for i in d %}
+            <tr style="font-size: 16px;">
+                <td style="padding: 10px; border: 1px solid #ccc;">{{ forloop.counter }}</td>
+                <td style="padding: 10px; border: 1px solid #ccc;">{{ i.date }}</td>
+                <td style="padding: 10px; border: 1px solid #ccc;">{{ i.time }}</td>
+                <td style="padding: 10px; border: 1px solid #ccc;">{{ i.status }}</td>
+                <td style="padding: 10px; border: 1px solid #ccc;">{{ i.schedule.therapist.fname }} {{ i.schedule.therapist.lname }}</td>
+                <td style="padding: 10px; border: 1px solid #ccc;">
+                    <form action="" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="booking_id" value="{{ i.id }}">
+                        <button type="submit" name="view" style="padding: 6px 12px; background-color: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px;">View Status</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    
+</body>
+<br><br>
+{%include 'footer.html'%}

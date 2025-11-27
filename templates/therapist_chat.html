@@ -1,0 +1,67 @@
+{%include 'therapist_header.html'%}
+<br><br>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Bot</title>
+    <style>
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .chat-message {
+            display: flex;
+            margin: 10px 0;
+        }
+        .chat-message.sent {
+            justify-content: flex-end;
+        }
+        .chat-message.received {
+            justify-content: flex-start;
+        }
+        .chat-bubble {
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 60%;
+        }
+        .chat-bubble.sent {
+            background-color: #c7e1ff;
+        }
+        .chat-bubble.received {
+            background-color: #e1ffc7;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        {% for chat in chats %}
+        <div class="chat-message {% if chat.sender_id == user_id %}sent{% else %}received{% endif %}">
+            <div class="chat-bubble {% if chat.sender_id == user_id %}sent{% else %}received{% endif %}">
+                {{ chat.chat }}
+            </div>
+        </div>
+        {% if chat.reply == 'pending' %}
+        <div class="chat-message received">
+            <div class="chat-bubble received">
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="chat_id" value="{{ chat.id }}">
+                    <textarea name="reply_message" rows="2" required></textarea>
+                    <button type="submit" name="submit">Reply</button>
+                </form>
+            </div>
+        </div>
+        {% elif chat.reply %}
+        <div class="chat-message received">
+            <div class="chat-bubble received">
+                {{ chat.reply }}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</body>
+<br><br>
+{%include 'footer.html'%}

@@ -1,0 +1,70 @@
+{%include 'admin_header.html'%}
+<br><br>
+<body>
+    <form action="" method="post" style="width: 80%; margin: 20px auto; font-family: Arial, sans-serif; border: 1px solid #ccc; padding: 20px; border-radius: 10px; background-color: #f9f9f9;">
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+            <input type="hidden" name="id" value="{{tea.id}}">
+            <tr>
+                <th style="text-align: left; padding: 10px;">Option 1</th>
+                <td style="padding: 10px;"><input type="text" name="answer1" style="width: 100%; padding: 5px; border: 1px solid #ccc; border-radius: 5px;"></td>
+                <td style="padding: 10px;">
+                    <input type="radio" name="status1" value="yes"> True
+                    <input type="radio" name="status1" value="no"> False
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: left; padding: 10px;">Option 2</th>
+                <td style="padding: 10px;"><input type="text" name="answer2" style="width: 100%; padding: 5px; border: 1px solid #ccc; border-radius: 5px;"></td>
+                <td style="padding: 10px;">
+                    <input type="radio" name="status2" value="yes"> True
+                    <input type="radio" name="status2" value="no"> False
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: left; padding: 10px;">Option 3</th>
+                <td style="padding: 10px;"><input type="text" name="answer3" style="width: 100%; padding: 5px; border: 1px solid #ccc; border-radius: 5px;"></td>
+                <td style="padding: 10px;">
+                    <input type="radio" name="status3" value="yes"> True
+                    <input type="radio" name="status3" value="no"> False
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: left; padding: 10px;">Option 4</th>
+                <td style="padding: 10px;"><input type="text" name="answer4" style="width: 100%; padding: 5px; border: 1px solid #ccc; border-radius: 5px;"></td>
+                <td style="padding: 10px;">
+                    <input type="radio" name="status4" value="yes"> True
+                    <input type="radio" name="status4" value="no"> False
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align: center; padding: 15px;">
+                    <input type="submit" name="submit" value="Submit" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                </td>
+            </tr>
+        </table>
+    
+        <h2 style="text-align: center; color: #333;">Existing Options</h2>
+        <table style="width: 100%; border-collapse: collapse; text-align: left; margin-top: 20px; border: 1px solid #ccc;">
+            <thead style="background-color: #007BFF; color: white;">
+                <tr>
+                    <th style="padding: 10px; border: 1px solid #ccc;">Index</th>
+                    <th style="padding: 10px; border: 1px solid #ccc;">Options</th>
+                    <th style="padding: 10px; border: 1px solid #ccc;">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in d %}
+                <tr >
+                    <td style="padding: 10px; border: 1px solid #ccc;">{{ forloop.counter }}</td>
+                    <td style="padding: 10px; border: 1px solid #ccc;">{{ i.options }}</td>
+                    <td style="padding: 10px; border: 1px solid #ccc;">{{ i.optionstatus }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+    
+</body>
+<br>
+
+{% include 'footer.html' %}

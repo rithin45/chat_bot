@@ -1,0 +1,23 @@
+{%include 'user_header.html'%}
+<br>
+<body>
+    <div style="width: 60%; margin: 20px auto; padding: 20px; border-radius: 10px; background-color: #ffffff; border: 1px solid #ccc; text-align: center;">
+        <h1 style="font-family: Arial, sans-serif; color: #333;">{{ question.question }}</h1>
+    </div>
+<form id="quiz-form" method="post" style="width: 60%; margin: 20px auto; padding: 20px; border-radius: 10px; background-color: #f9f9f9; border: 1px solid #ccc;">
+    <input type="hidden" name="question_id" value="{{ question.id }}">
+    {% for option in options %}
+        <div style="margin-bottom: 10px;">
+            <input type="radio" name="option_id" value="{{ option.id }}" id="option{{ option.id }}" style="margin-right: 10px;">
+            <label for="option{{ option.id }}" style="font-family: Arial, sans-serif; color: #333; font-size: 16px;">{{ option.option }}</label>
+        </div>
+    {% endfor %}
+    <button type="submit" name="submit" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">
+        Submit
+    </button>
+</form>
+<div id="result" style="text-align: center; margin-top: 20px; font-family: Arial, sans-serif; color: #333;"></div>
+
+</body>
+<br><br>
+{%include 'footer.html'%}

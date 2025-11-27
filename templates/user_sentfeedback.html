@@ -1,0 +1,41 @@
+{%include 'user_header.html'%}
+<br>
+<body>
+    <form action="" method="post" style="width: 60%; margin: 20px auto; font-family: Arial, sans-serif; border: 1px solid #ccc; padding: 20px; border-radius: 10px; background-color: #f9f9f9;">
+        <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; margin-bottom: 20px;">
+            <tr>
+                <th style="padding: 10px; text-align: left; font-weight: bold;">Feedback</th>
+                <td style="padding: 10px;"><input type="text" name="feed" required style="padding: 5px; width: 100%; border-radius: 5px; border: 1px solid #ccc;"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;" colspan="2">
+                    <input type="submit" name="submit" value="Submit" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                </td>
+            </tr>
+        </table>
+    </form>
+    
+    <table style="width: 80%; margin: 0 auto; border-collapse: collapse; font-family: Arial, sans-serif; background-color: #f9f9f9;">
+        <tr style="background-color: #007BFF; color: white; text-align: center;">
+            <th style="padding: 10px;">Sl No:</th>
+            <th style="padding: 10px;">Feedback:</th>
+            <th style="padding: 10px;">Reply:</th>
+            <th style="padding: 10px;">Date:</th>
+            <th style="padding: 10px;">User:</th>
+            <th style="padding: 10px;">Action:</th>
+        </tr>
+        {% for i in d %}
+        <tr style="text-align: center;">
+            <td style="padding: 10px;">{{forloop.counter}}</td>
+            <td style="padding: 10px;">{{i.feedback}}</td>
+            <td style="padding: 10px;">{{i.reply}}</td>
+            <td style="padding: 10px;">{{i.date}}</td>
+            <td style="padding: 10px;">{{i.user.fname}} {{i.user.lname}}</td>
+            <td style="padding: 10px;"><a href="user_sentfeedbackdelete/{{i.id}}" style="color: red; text-decoration: none;">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+<br><br>
+{%include 'footer.html'%}

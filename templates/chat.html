@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <style>
+        .chat-box {
+            max-width: 400px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .sender {
+            background-color: #d1e7dd;
+            text-align: left;
+            margin-right: auto;
+        }
+        .receiver {
+            background-color: #f8d7da;
+            text-align: right;
+            margin-left: auto;
+        }
+        .chat-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-form textarea {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chat with Therapist</h1>
+    <div>
+        {% for chat in chats %}
+        {% if chat.sender_id == request.session.lid %}
+        <div class="chat-box sender">
+            <p><strong>You:</strong> {{ chat.chat }}</p>
+            {% if chat.reply %}
+            <p><strong>Reply:</strong> {{ chat.reply }}</p>
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="chat-box receiver">
+            <p><strong>Therapist:</strong> {{ chat.chat }}</p>
+            {% if chat.reply %}
+            <p><strong>Reply:</strong> {{ chat.reply }}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <form method="post" class="chat-form">
+        {% csrf_token %}
+        <textarea name="chat" rows="4" placeholder="Type your message here..." required></textarea>
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{%include 'public_header.html'%}
+<body>
+    <form method="post">
+        <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+            <div style="background-color: #fff; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+                <form method="post">
+                    <table>
+                        <tr>
+                            <th style="text-align: left; padding: 8px; font-family: Arial, sans-serif; font-size: 14px;">Username:</th>
+                            <td style="padding: 8px;"><input type="text" name="username" placeholder="Username" class="form-control" style="width: 100%; padding: 8px; font-family: Arial, sans-serif; font-size: 14px;"></td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: left; padding: 8px; font-family: Arial, sans-serif; font-size: 14px;">Password:</th>
+                            <td style="padding: 8px;"><input type="password" name="password" placeholder="Password" class="form-control" style="width: 100%; padding: 8px; font-family: Arial, sans-serif; font-size: 14px;"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center; padding: 8px;"><input type="submit" name="submit" value="Submit" class="form-control" style="padding: 8px 16px; font-family: Arial, sans-serif; font-size: 14px; background-color: #007bff; color: #fff; border: none; border-radius: 4px;"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </form>
+</body>
+{%include 'footer.html'%}

@@ -1,0 +1,76 @@
+{%include 'user_header.html'%}
+<br>
+<form id="chat-form" style="margin-bottom: 20px;">
+    <label for="message" style="display: none;">Your Message:</label>
+    <div style="display: flex;">
+        <input 
+            type="text" 
+            id="message" 
+            name="message" 
+            required 
+            placeholder="Type your message..." 
+            style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px;"
+        >
+        <button 
+            type="submit" 
+            style="padding: 10px 15px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;"
+        >Send</button>
+    </div>
+</form>
+<div id="chat-container" style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif;">
+    <!-- Chat messages will be appended here -->
+</div>
+<div id="loading" style="display: none; text-align: center; font-size: 14px; color: #ffffff;">Loading...</div>
+<br><br>
+{%include 'footer.html'%}
+<script>
+    document.getElementById('chat-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const message = document.getElementById('message').value.trim();
+        const chatContainer = document.getElementById('chat-container');
+        const loadingDiv = document.getElementById('loading');
+
+        if (!message) {
+            alert('Please provide a valid message.');
+            return;
+        }
+
+        // Append user's message to chat container
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.style.cssText = "text-align: right; margin: 10px 0;";
+        userMessageDiv.innerHTML = `<div style="display: inline-block; background-color: #007BFF; color: white; padding: 10px 15px; border-radius: 15px; max-width: 70%;">${message}</div>`;
+        chatContainer.appendChild(userMessageDiv);
+
+        // Clear input field
+        document.getElementById('message').value = '';
+
+        // Show loading indicator
+        loadingDiv.style.display = 'block';
+
+        try {
+            const response = await fetch('/chat/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            });
+            const result = await response.json();
+
+            // Append response to chat container
+            const botMessageDiv = document.createElement('div');
+            botMessageDiv.style.cssText = "text-align: left; margin: 10px 0;";
+            botMessageDiv.innerHTML = `<div style="display: inline-block; background-color: #f1f1f1; color: #333; padding: 10px 15px; border-radius: 15px; max-width: 70%;">${result.response}</div>`;
+            chatContainer.appendChild(botMessageDiv);
+        } catch (error) {
+            const errorMessageDiv = document.createElement('div');
+            errorMessageDiv.style.cssText = "text-align: left; margin: 10px 0;";
+            errorMessageDiv.innerHTML = `<div style="display: inline-block; background-color: #f8d7da; color: #721c24; padding: 10px 15px; border-radius: 15px; max-width: 70%;">Something went wrong. Please try again later.</div>`;
+            chatContainer.appendChild(errorMessageDiv);
+        } finally {
+            // Hide loading indicator
+            loadingDiv.style.display = 'none';
+
+            // Scroll to the latest message
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+    });
+</script>
